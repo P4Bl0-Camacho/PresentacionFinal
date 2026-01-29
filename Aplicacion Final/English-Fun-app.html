@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Fun! - Aprende Inglés Jugando</title>
+  <meta name="description" content="App educativa para niños de 5-8 años. Aprende vocabulario básico en inglés: colores, animales y números con juegos interactivos y pronunciación.">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    :root {
+      --background: 180 100% 97%;
+      --foreground: 220 60% 20%;
+      --card: 0 0% 100%;
+      --card-foreground: 220 60% 20%;
+      --primary: 175 80% 50%;
+      --primary-foreground: 0 0% 100%;
+      --secondary: 25 95% 60%;
+      --secondary-foreground: 0 0% 100%;
+      --accent: 330 85% 65%;
+      --accent-foreground: 0 0% 100%;
+      --muted: 180 30% 92%;
+      --muted-foreground: 220 30% 40%;
+      --success: 145 80% 45%;
+      --success-foreground: 0 0% 100%;
+      --destructive: 0 84% 60%;
+      --destructive-foreground: 0 0% 100%;
+      --star: 45 100% 50%;
+      --border: 180 30% 85%;
+      --gradient-start: 175 80% 50%;
+      --gradient-middle: 280 70% 60%;
+      --gradient-end: 330 85% 65%;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: hsl(var(--background));
+      color: hsl(var(--foreground));
+      min-height: 100vh;
+    }
+    
+    h1, h2, h3, h4, h5, h6, .font-fredoka { font-family: 'Fredoka', sans-serif; }
+    
+    .gradient-rainbow {
+      background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-middle)), hsl(var(--gradient-end)));
+    }
+    .gradient-primary { background: linear-gradient(135deg, hsl(var(--primary)), hsl(175 80% 60%)); }
+    .gradient-secondary { background: linear-gradient(135deg, hsl(var(--secondary)), hsl(35 95% 65%)); }
+    .gradient-accent { background: linear-gradient(135deg, hsl(var(--accent)), hsl(340 85% 70%)); }
+    .gradient-success { background: linear-gradient(135deg, hsl(var(--success)), hsl(155 80% 50%)); }
+    
+    .text-gradient-rainbow {
+      background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-middle)), hsl(var(--gradient-end)));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .shadow-kid { box-shadow: 0 8px 32px -8px hsla(var(--primary), 0.3), 0 4px 16px -4px hsla(var(--accent), 0.2); }
+    .shadow-card { box-shadow: 0 4px 24px -4px hsla(220, 60%, 20%, 0.12), 0 2px 8px -2px hsla(220, 60%, 20%, 0.08); }
+    .shadow-button { box-shadow: 0 4px 12px -2px hsla(var(--primary), 0.4); }
+    
+    .rounded-kid { border-radius: 1rem; }
+    .rounded-bubble { border-radius: 1.5rem; }
+    
+    .bg-background { background: hsl(var(--background)); }
+    .bg-card { background: hsl(var(--card)); }
+    .bg-muted { background: hsl(var(--muted)); }
+    .bg-primary { background: hsl(var(--primary)); }
+    .bg-secondary { background: hsl(var(--secondary)); }
+    .bg-accent { background: hsl(var(--accent)); }
+    .bg-success { background: hsl(var(--success)); }
+    .bg-destructive { background: hsl(var(--destructive)); }
+    
+    .text-foreground { color: hsl(var(--foreground)); }
+    .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+    .text-primary { color: hsl(var(--primary)); }
+    .text-primary-foreground { color: hsl(var(--primary-foreground)); }
+    .text-secondary-foreground { color: hsl(var(--secondary-foreground)); }
+    .text-accent-foreground { color: hsl(var(--accent-foreground)); }
+    .text-success { color: hsl(var(--success)); }
+    .text-success-foreground { color: hsl(var(--success-foreground)); }
+    .text-star { color: hsl(var(--star)); }
+    .fill-star { fill: hsl(var(--star)); }
+    
+    .border-border { border-color: hsl(var(--border)); }
+    
+    @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); } 60% { transform: translateY(-8px); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    @keyframes wiggle { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-5deg); } 75% { transform: rotate(5deg); } }
+    
+    /* Flashcard animations */
+    @keyframes flipIn { 
+      0% { 
+        transform: rotateY(-90deg) scale(0.9); 
+        opacity: 0;
+      }
+      50% {
+        transform: rotateY(-45deg) scale(0.95);
+      }
+      100% { 
+        transform: rotateY(0deg) scale(1); 
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slideUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    .flashcard-container {
+      perspective: 1500px;
+    }
+    
+    .flashcard {
+      transform-style: preserve-3d;
+      position: relative;
+    }
+    
+    .flashcard.flipping {
+      animation: flipIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .flashcard-info {
+      animation: slideUp 0.5s ease-out 0.3s both;
+    }
+    
+    .animate-bounce { animation: bounce 2s infinite; }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+    .animate-shake { animation: shake 0.5s ease-in-out; }
+    .animate-pulse { animation: pulse 2s ease-in-out infinite; }
+    .animate-wiggle { animation: wiggle 0.5s ease-in-out; }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn:hover { transform: scale(1.05); }
+    .btn:active { transform: scale(0.95); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    
+    .btn-primary { background: linear-gradient(135deg, hsl(175 80% 50%), hsl(175 80% 60%)); color: white; box-shadow: 0 4px 12px -2px hsla(175, 80%, 50%, 0.4); }
+    .btn-secondary { background: linear-gradient(135deg, hsl(25 95% 60%), hsl(35 95% 65%)); color: white; box-shadow: 0 4px 12px -2px hsla(25, 95%, 60%, 0.4); }
+    .btn-accent { background: linear-gradient(135deg, hsl(330 85% 65%), hsl(340 85% 70%)); color: white; box-shadow: 0 4px 12px -2px hsla(330, 85%, 65%, 0.4); }
+    .btn-success { background: linear-gradient(135deg, hsl(145 80% 45%), hsl(155 80% 50%)); color: white; box-shadow: 0 4px 12px -2px hsla(145, 80%, 45%, 0.4); }
+    .btn-ghost { background: hsl(var(--card)); color: hsl(var(--foreground)); box-shadow: 0 4px 24px -4px hsla(220, 60%, 20%, 0.12); }
+    .btn-ghost:hover { background: hsl(var(--muted)); }
+    .btn-sm { padding: 0.5rem 1rem; font-size: 0.875rem; border-radius: 0.5rem; }
+    
+    .card {
+      background: hsl(var(--card));
+      border-radius: 1rem;
+      box-shadow: 0 4px 24px -4px hsla(220, 60%, 20%, 0.12), 0 2px 8px -2px hsla(220, 60%, 20%, 0.08);
+      overflow: hidden;
+    }
+    
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      background: hsla(0, 0%, 100%, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    
+    .star-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: hsla(0, 0%, 100%, 0.8);
+      backdrop-filter: blur(8px);
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      box-shadow: 0 4px 24px -4px hsla(220, 60%, 20%, 0.12);
+    }
+    
+    .draggable { cursor: grab; touch-action: none; user-select: none; }
+    .draggable:active { cursor: grabbing; }
+    
+    .droppable {
+      border: 2px dashed hsl(var(--muted));
+      border-radius: 1rem;
+      transition: all 0.2s;
+    }
+    .droppable.active { background: hsla(var(--primary), 0.2); border-color: hsl(var(--primary)); transform: scale(1.05); }
+    .droppable.correct { border-color: hsl(var(--success)); box-shadow: 0 0 0 4px hsl(var(--success)); }
+    .droppable.wrong { border-color: hsl(var(--destructive)); animation: shake 0.5s; }
+    
+    .letter-btn {
+      width: 3.5rem;
+      height: 3.5rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border-radius: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: linear-gradient(135deg, hsl(var(--accent)), hsl(340 85% 70%));
+      color: white;
+      box-shadow: 0 4px 12px -2px hsla(330, 85%, 65%, 0.4);
+    }
+    .letter-btn:hover:not(:disabled) { transform: scale(1.1) translateY(-5px); }
+    .letter-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; background: hsl(var(--muted)); color: hsl(var(--muted-foreground)); }
+    
+    .letter-slot {
+      width: 3rem;
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      background: hsla(var(--primary), 0.1);
+      color: hsl(var(--foreground));
+    }
+    .letter-slot.blank {
+      background: hsl(var(--muted));
+      border: 2px dashed hsl(var(--primary));
+      color: hsl(var(--primary));
+    }
+    
+    .hidden { display: none !important; }
+    .grid { display: grid; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .flex-wrap { flex-wrap: wrap; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .p-3 { padding: 0.75rem; }
+    .p-4 { padding: 1rem; }
+    .p-6 { padding: 1.5rem; }
+    .p-8 { padding: 2rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+    .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+    .pt-24 { padding-top: 6rem; }
+    .pb-8 { padding-bottom: 2rem; }
+    .mt-1 { margin-top: 0.25rem; }
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-6 { margin-top: 1.5rem; }
+    .mb-2 { margin-bottom: 0.5rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mb-8 { margin-bottom: 2rem; }
+    .mr-2 { margin-right: 0.5rem; }
+    .text-center { text-align: center; }
+    .text-xs { font-size: 0.75rem; }
+    .text-sm { font-size: 0.875rem; }
+    .text-lg { font-size: 1.125rem; }
+    .text-xl { font-size: 1.25rem; }
+    .text-2xl { font-size: 1.5rem; }
+    .text-3xl { font-size: 1.875rem; }
+    .text-4xl { font-size: 2.25rem; }
+    .text-5xl { font-size: 3rem; }
+    .text-6xl { font-size: 3.75rem; }
+    .text-7xl { font-size: 4.5rem; }
+    .text-8xl { font-size: 6rem; }
+    .font-bold { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+    .rounded-full { border-radius: 9999px; }
+    .rounded-lg { border-radius: 0.5rem; }
+    .rounded-2xl { border-radius: 1rem; }
+    .w-4 { width: 1rem; }
+    .w-5 { width: 1.25rem; }
+    .w-6 { width: 1.5rem; }
+    .w-8 { width: 2rem; }
+    .w-12 { width: 3rem; }
+    .w-16 { width: 4rem; }
+    .w-20 { width: 5rem; }
+    .h-2 { height: 0.5rem; }
+    .h-4 { height: 1rem; }
+    .h-5 { height: 1.25rem; }
+    .h-6 { height: 1.5rem; }
+    .h-8 { height: 2rem; }
+    .h-12 { height: 3rem; }
+    .h-14 { height: 3.5rem; }
+    .h-16 { height: 4rem; }
+    .h-20 { height: 5rem; }
+    .h-48 { height: 12rem; }
+    .min-h-screen { min-height: 100vh; }
+    .max-w-md { max-width: 28rem; }
+    .max-w-lg { max-width: 32rem; }
+    .max-w-xl { max-width: 36rem; }
+    .max-w-2xl { max-width: 42rem; }
+    .max-w-3xl { max-width: 48rem; }
+    .max-w-4xl { max-width: 56rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .fixed { position: fixed; }
+    .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+    .top-0 { top: 0; }
+    .left-0 { left: 0; }
+    .right-0 { right: 0; }
+    .z-10 { z-index: 10; }
+    .z-40 { z-index: 40; }
+    .z-50 { z-index: 50; }
+    .overflow-hidden { overflow: hidden; }
+    .pointer-events-none { pointer-events: none; }
+    .cursor-pointer { cursor: pointer; }
+    .select-none { user-select: none; }
+    .opacity-20 { opacity: 0.2; }
+    .opacity-50 { opacity: 0.5; }
+    .drop-shadow-lg { filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1)); }
+    .ring-4 { box-shadow: 0 0 0 4px; }
+    .ring-success { --tw-ring-color: hsl(var(--success)); box-shadow: 0 0 0 4px hsl(var(--success)); }
+    .ring-destructive { --tw-ring-color: hsl(var(--destructive)); box-shadow: 0 0 0 4px hsl(var(--destructive)); }
+    
+    .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+    
+    @media (min-width: 640px) {
+      .sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+      .sm\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+      .sm\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+      .sm\:grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+      .sm\:grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+      .sm\:inline { display: inline; }
+      .sm\:text-xl { font-size: 1.25rem; }
+      .sm\:text-2xl { font-size: 1.5rem; }
+      .sm\:text-5xl { font-size: 3rem; }
+      .sm\:h-64 { height: 16rem; }
+      .sm\:w-20 { width: 5rem; }
+      .sm\:h-20 { height: 5rem; }
+    }
+    @media (min-width: 768px) {
+      .md\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+      .md\:grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+      .md\:text-6xl { font-size: 3.75rem; }
+    }
+    @media (min-width: 1024px) {
+      .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+      .lg\:grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+    }
+    
+    .number-colors-0 { background: linear-gradient(135deg, #f87171, #ef4444); }
+    .number-colors-1 { background: linear-gradient(135deg, #60a5fa, #3b82f6); }
+    .number-colors-2 { background: linear-gradient(135deg, #4ade80, #22c55e); }
+    .number-colors-3 { background: linear-gradient(135deg, #facc15, #eab308); }
+    .number-colors-4 { background: linear-gradient(135deg, #c084fc, #a855f7); }
+    .number-colors-5 { background: linear-gradient(135deg, #f472b6, #ec4899); }
+    .number-colors-6 { background: linear-gradient(135deg, #fb923c, #f97316); }
+    .number-colors-7 { background: linear-gradient(135deg, #2dd4bf, #14b8a6); }
+    .number-colors-8 { background: linear-gradient(135deg, #818cf8, #6366f1); }
+    .number-colors-9 { background: linear-gradient(135deg, #22d3ee, #06b6d4); }
+    
+    ::-webkit-scrollbar { width: 12px; }
+    ::-webkit-scrollbar-track { background: hsl(var(--muted)); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { 
+      background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--accent))); 
+      border-radius: 10px; 
+      border: 2px solid hsl(var(--muted)); 
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    // ============= DATA =============
+    const colorsData = [
+      { english: 'Red', spanish: 'Rojo', hex: '#EF4444' },
+      { english: 'Blue', spanish: 'Azul', hex: '#3B82F6' },
+      { english: 'Yellow', spanish: 'Amarillo', hex: '#EAB308' },
+      { english: 'Green', spanish: 'Verde', hex: '#22C55E' },
+      { english: 'Orange', spanish: 'Naranja', hex: '#F97316' },
+      { english: 'Purple', spanish: 'Morado', hex: '#A855F7' },
+      { english: 'Pink', spanish: 'Rosa', hex: '#EC4899' },
+      { english: 'Brown', spanish: 'Café', hex: '#92400E' },
+      { english: 'Black', spanish: 'Negro', hex: '#1F2937' },
+      { english: 'White', spanish: 'Blanco', hex: '#F9FAFB' },
+      { english: 'Gray', spanish: 'Gris', hex: '#6B7280' },
+      { english: 'Gold', spanish: 'Dorado', hex: '#FBBF24' },
+    ];
+
+    const animalsData = [
+      { english: 'Dog', spanish: 'Perro', emoji: '🐕' },
+      { english: 'Cat', spanish: 'Gato', emoji: '🐈' },
+      { english: 'Bird', spanish: 'Pájaro', emoji: '🐦' },
+      { english: 'Fish', spanish: 'Pez', emoji: '🐟' },
+      { english: 'Horse', spanish: 'Caballo', emoji: '🐴' },
+      { english: 'Cow', spanish: 'Vaca', emoji: '🐄' },
+      { english: 'Pig', spanish: 'Cerdo', emoji: '🐷' },
+      { english: 'Sheep', spanish: 'Oveja', emoji: '🐑' },
+      { english: 'Chicken', spanish: 'Pollo', emoji: '🐔' },
+      { english: 'Duck', spanish: 'Pato', emoji: '🦆' },
+      { english: 'Rabbit', spanish: 'Conejo', emoji: '🐰' },
+      { english: 'Mouse', spanish: 'Ratón', emoji: '🐭' },
+      { english: 'Elephant', spanish: 'Elefante', emoji: '🐘' },
+      { english: 'Lion', spanish: 'León', emoji: '🦁' },
+      { english: 'Tiger', spanish: 'Tigre', emoji: '🐯' },
+      { english: 'Bear', spanish: 'Oso', emoji: '🐻' },
+      { english: 'Monkey', spanish: 'Mono', emoji: '🐵' },
+      { english: 'Frog', spanish: 'Rana', emoji: '🐸' },
+      { english: 'Snake', spanish: 'Serpiente', emoji: '🐍' },
+      { english: 'Turtle', spanish: 'Tortuga', emoji: '🐢' },
+    ];
+
+    const numbersData = [
+      { english: 'One', spanish: 'Uno', value: 1 },
+      { english: 'Two', spanish: 'Dos', value: 2 },
+      { english: 'Three', spanish: 'Tres', value: 3 },
+      { english: 'Four', spanish: 'Cuatro', value: 4 },
+      { english: 'Five', spanish: 'Cinco', value: 5 },
+      { english: 'Six', spanish: 'Seis', value: 6 },
+      { english: 'Seven', spanish: 'Siete', value: 7 },
+      { english: 'Eight', spanish: 'Ocho', value: 8 },
+      { english: 'Nine', spanish: 'Nueve', value: 9 },
+      { english: 'Ten', spanish: 'Diez', value: 10 },
+      { english: 'Eleven', spanish: 'Once', value: 11 },
+      { english: 'Twelve', spanish: 'Doce', value: 12 },
+      { english: 'Thirteen', spanish: 'Trece', value: 13 },
+      { english: 'Fourteen', spanish: 'Catorce', value: 14 },
+      { english: 'Fifteen', spanish: 'Quince', value: 15 },
+      { english: 'Sixteen', spanish: 'Dieciséis', value: 16 },
+      { english: 'Seventeen', spanish: 'Diecisiete', value: 17 },
+      { english: 'Eighteen', spanish: 'Dieciocho', value: 18 },
+      { english: 'Nineteen', spanish: 'Diecinueve', value: 19 },
+      { english: 'Twenty', spanish: 'Veinte', value: 20 },
+    ];
+
+    const mascots = {
+      owl: { emoji: '🦉', name: 'Ollie', unlockAt: 0 },
+      cat: { emoji: '🐱', name: 'Michi', unlockAt: 10 },
+      dog: { emoji: '🐶', name: 'Buddy', unlockAt: 25 },
+      rabbit: { emoji: '🐰', name: 'Hoppy', unlockAt: 50 },
+      bear: { emoji: '🐻', name: 'Teddy', unlockAt: 75 },
+      lion: { emoji: '🦁', name: 'Leo', unlockAt: 100 },
+    };
+
+    // ============= AUDIO =============
+    let audioContext = null;
+    
+    function initAudio() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+    }
+
+    function playSuccessSound() {
+      if (!audioContext) return;
+      const now = audioContext.currentTime;
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      notes.forEach((freq, i) => {
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        osc.frequency.value = freq;
+        osc.type = 'sine';
+        gain.gain.setValueAtTime(0.3, now + i * 0.1);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.1 + 0.3);
+        osc.start(now + i * 0.1);
+        osc.stop(now + i * 0.1 + 0.3);
+      });
+    }
+
+    function playErrorSound() {
+      if (!audioContext) return;
+      const now = audioContext.currentTime;
+      const osc = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      osc.connect(gain);
+      gain.connect(audioContext.destination);
+      osc.frequency.setValueAtTime(300, now);
+      osc.frequency.exponentialRampToValueAtTime(200, now + 0.2);
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0.2, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+      osc.start(now);
+      osc.stop(now + 0.2);
+    }
+
+    function playStarSound() {
+      if (!audioContext) return;
+      const now = audioContext.currentTime;
+      const notes = [880, 1108.73, 1318.51];
+      notes.forEach((freq, i) => {
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        osc.frequency.value = freq;
+        osc.type = 'sine';
+        gain.gain.setValueAtTime(0.2, now + i * 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.05 + 0.4);
+        osc.start(now + i * 0.05);
+        osc.stop(now + i * 0.05 + 0.4);
+      });
+    }
+
+    function speak(text, lang = 'en-US') {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        utterance.rate = 0.8;
+        utterance.pitch = 1.1;
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoice = voices.find(v => v.lang.startsWith('en') && v.name.includes('Female')) || 
+                            voices.find(v => v.lang.startsWith('en'));
+        if (englishVoice) utterance.voice = englishVoice;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    // ============= PROGRESS =============
+    const defaultProgress = {
+      stars: 0,
+      colorsCompleted: false,
+      colorsStars: 0,
+      animalsCompleted: false,
+      animalsStars: 0,
+      numbersCompleted: false,
+      numbersStars: 0,
+      unlockedMascots: ['owl'],
+      currentMascot: 'owl',
+    };
+
+    function getProgress() {
+      try {
+        const saved = localStorage.getItem('kidVocabProgress');
+        return saved ? JSON.parse(saved) : { ...defaultProgress };
+      } catch {
+        return { ...defaultProgress };
+      }
+    }
+
+    function saveProgress(progress) {
+      localStorage.setItem('kidVocabProgress', JSON.stringify(progress));
+    }
+
+    function addStars(count) {
+      const progress = getProgress();
+      progress.stars += count;
+      // Unlock mascots
+      if (progress.stars >= 10 && !progress.unlockedMascots.includes('cat')) progress.unlockedMascots.push('cat');
+      if (progress.stars >= 25 && !progress.unlockedMascots.includes('dog')) progress.unlockedMascots.push('dog');
+      if (progress.stars >= 50 && !progress.unlockedMascots.includes('rabbit')) progress.unlockedMascots.push('rabbit');
+      if (progress.stars >= 75 && !progress.unlockedMascots.includes('bear')) progress.unlockedMascots.push('bear');
+      if (progress.stars >= 100 && !progress.unlockedMascots.includes('lion')) progress.unlockedMascots.push('lion');
+      saveProgress(progress);
+    }
+
+    function completeModule(module, starsEarned) {
+      const progress = getProgress();
+      progress[module + 'Completed'] = true;
+      progress[module + 'Stars'] = Math.max(progress[module + 'Stars'], starsEarned);
+      saveProgress(progress);
+      addStars(starsEarned);
+    }
+
+    // ============= APP STATE =============
+    let currentPage = 'home';
+    let currentMode = 'learn';
+
+    // ============= RENDERING =============
+    function shuffle(array) {
+      return [...array].sort(() => Math.random() - 0.5);
+    }
+
+    function renderHeader() {
+      const progress = getProgress();
+      const mascot = mascots[progress.currentMascot] || mascots.owl;
+      return `
+        <header class="header">
+          <div class="container flex items-center justify-between py-3">
+            <button onclick="navigateTo('home')" class="flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full" style="background: hsla(175, 80%, 50%, 0.1);">
+              <span class="text-xl">🏠</span>
+              <span class="font-fredoka font-semibold text-primary hidden sm:inline">Inicio</span>
+            </button>
+            <h1 class="font-fredoka font-bold text-xl sm:text-2xl text-gradient-rainbow absolute left-1/2 transform -translate-x-1/2">English Fun! 🌟</h1>
+            <div class="flex items-center gap-3">
+              <div class="star-badge">
+                <span class="text-xl">⭐</span>
+                <span class="font-fredoka font-bold text-xl">${progress.stars}</span>
+              </div>
+              <button onclick="navigateTo('profile')" class="text-3xl">${mascot.emoji}</button>
+            </div>
+          </div>
+        </header>
+      `;
+    }
+
+    function renderMascot(message) {
+      const progress = getProgress();
+      const mascot = mascots[progress.currentMascot] || mascots.owl;
+      return `
+        <div class="flex flex-col items-center gap-3 mb-8">
+          <div class="text-6xl animate-float">${mascot.emoji}</div>
+          ${message ? `
+            <div class="card p-4 max-w-xs text-center">
+              <p class="font-semibold">${message}</p>
+              <p class="text-xs text-muted-foreground mt-1">- ${mascot.name}</p>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    function renderModuleCard(title, titleEn, emoji, module, variant) {
+      const progress = getProgress();
+      const stars = progress[module + 'Stars'] || 0;
+      const completed = progress[module + 'Completed'];
+      const gradientClass = variant === 'colors' ? 'gradient-primary' : variant === 'animals' ? 'gradient-success' : 'gradient-secondary';
+      
+      return `
+        <button onclick="initAudio(); navigateTo('${module}')" class="card p-6 text-center w-full hover:scale-105 transition-transform">
+          <div class="${gradientClass} w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl">${emoji}</div>
+          <h3 class="font-fredoka font-bold text-xl">${title}</h3>
+          <p class="text-sm text-muted-foreground mb-2">${titleEn}</p>
+          <div class="flex justify-center gap-1">
+            ${[0,1,2].map(i => `<span class="text-xl">${i < stars ? '⭐' : '☆'}</span>`).join('')}
+          </div>
+          ${completed ? '<span class="inline-block mt-2 bg-success text-white text-xs px-2 py-1 rounded-full">¡Completado!</span>' : ''}
+        </button>
+      `;
+    }
+
+    function renderHomePage() {
+      const messages = [
+        "¡Hola amiguito! ¿Listo para aprender inglés? 🌟",
+        "¡Bienvenido de vuelta! ¡Vamos a divertirnos! 🎉",
+        "¡Qué alegría verte! Elige un módulo para empezar 📚",
+      ];
+      
+      return `
+        ${renderHeader()}
+        <main class="container pt-24 pb-8">
+          <div class="text-center mb-8">
+            <h1 class="font-fredoka text-4xl sm:text-5xl md:text-6xl font-bold text-gradient-rainbow mb-4 animate-pulse">English Fun!</h1>
+            <p class="text-lg text-muted-foreground">Aprende inglés jugando con colores, animales y números</p>
+          </div>
+          ${renderMascot(messages[Math.floor(Math.random() * messages.length)])}
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            ${renderModuleCard('Colores', 'Colors', '🎨', 'colors', 'colors')}
+            ${renderModuleCard('Animales', 'Animals', '🐾', 'animals', 'animals')}
+            ${renderModuleCard('Números', 'Numbers', '🔢', 'numbers', 'numbers')}
+          </div>
+        </main>
+      `;
+    }
+
+    // ============= COLORS MODULE =============
+    let colorsState = { mode: 'learn', currentIndex: 0, gameColors: [], targetSlots: [], matches: {}, gameComplete: false, isFlipping: false };
+
+    function renderColorsPage() {
+      const messages = ["¡Vamos a aprender los colores en inglés! 🎨", "¡Toca el altavoz para escuchar! 🔊"];
+      
+      return `
+        ${renderHeader()}
+        <main class="container pt-24 pb-8">
+          <div class="flex justify-center gap-4 mb-8">
+            <button onclick="colorsState.mode='learn'; colorsState.isFlipping=false; render()" class="btn ${colorsState.mode === 'learn' ? 'btn-primary' : 'btn-ghost'}">📚 Aprender</button>
+            <button onclick="startColorsGame()" class="btn ${colorsState.mode === 'game' ? 'btn-primary' : 'btn-ghost'}">🎮 Juego</button>
+          </div>
+          ${renderMascot(messages[Math.floor(Math.random() * messages.length)])}
+          ${colorsState.mode === 'learn' ? renderColorsLearn() : renderColorsGame()}
+        </main>
+      `;
+    }
+
+    function changeColor(direction) {
+      colorsState.isFlipping = true;
+      render();
+      
+      setTimeout(() => {
+        if (direction === 'next') {
+          colorsState.currentIndex = (colorsState.currentIndex + 1) % colorsData.length;
+        } else {
+          colorsState.currentIndex = colorsState.currentIndex > 0 ? colorsState.currentIndex - 1 : colorsData.length - 1;
+        }
+        colorsState.isFlipping = false;
+        render();
+      }, 100);
+    }
+
+    function renderColorsLearn() {
+      const color = colorsData[colorsState.currentIndex];
+      const isLight = ['White', 'Yellow', 'Gold'].includes(color.english);
+      const flipClass = colorsState.isFlipping ? 'flipping' : '';
+      
+      return `
+        <div class="max-w-md mx-auto flashcard-container">
+          <div class="card overflow-hidden flashcard ${flipClass}">
+            <div class="h-48 sm:h-64 flex items-center justify-center ${color.english === 'White' ? 'border-b' : ''}" style="background-color: ${color.hex}">
+              <span class="text-6xl sm:text-8xl font-fredoka font-bold ${isLight ? 'text-foreground' : 'text-white'} drop-shadow-lg animate-pulse">${color.english}</span>
+            </div>
+            <div class="p-6 text-center flashcard-info">
+              <p class="text-muted-foreground text-lg mb-4">${color.spanish}</p>
+              <button onclick="speak('${color.english}')" class="btn-primary btn rounded-full p-4">
+                <span class="text-2xl">🔊</span>
+              </button>
+              <p class="text-sm text-muted-foreground mt-3">${colorsState.currentIndex + 1} / ${colorsData.length}</p>
+            </div>
+          </div>
+          <div class="flex justify-center gap-4 mt-6">
+            <button onclick="changeColor('prev')" class="btn btn-ghost">← Anterior</button>
+            <button onclick="changeColor('next')" class="btn btn-primary">Siguiente →</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function startColorsGame() {
+      const shuffled = shuffle(colorsData);
+      colorsState.mode = 'game';
+      colorsState.targetSlots = shuffled.slice(0, 4);
+      colorsState.gameColors = shuffle([...colorsState.targetSlots]);
+      colorsState.matches = {};
+      colorsState.gameComplete = false;
+      render();
+    }
+
+    function renderColorsGame() {
+      if (colorsState.gameComplete) {
+        return `
+          <div class="text-center py-12">
+            <h2 class="font-fredoka text-4xl font-bold text-success mb-4">🎉 ¡Excelente! 🎉</h2>
+            <p class="text-xl text-muted-foreground mb-6">¡Completaste el juego de colores!</p>
+            <div class="flex justify-center gap-4">
+              <button onclick="startColorsGame()" class="btn btn-primary">🔄 Jugar de nuevo</button>
+              <button onclick="navigateTo('home')" class="btn btn-ghost">Volver al inicio</button>
+            </div>
+          </div>
+        `;
+      }
+      
+      return `
+        <div class="max-w-2xl mx-auto">
+          <h2 class="font-fredoka text-2xl font-bold text-center mb-6">Arrastra cada color a su nombre correcto</h2>
+          <div class="flex flex-wrap justify-center gap-4 mb-8 p-4 bg-muted rounded-kid" id="colorsSource">
+            ${colorsState.gameColors.map(c => `
+              <div draggable="true" ondragstart="handleColorDragStart(event, '${c.english}')" 
+                   class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl shadow-lg cursor-grab draggable ${c.english === 'White' ? 'border-2 border-gray-300' : ''}" 
+                   style="background-color: ${c.hex}" data-color="${c.english}"></div>
+            `).join('')}
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            ${colorsState.targetSlots.map(c => `
+              <div class="flex flex-col items-center gap-2 p-3 rounded-kid bg-card ${colorsState.matches[c.english] ? 'ring-success ring-4' : ''}"
+                   ondragover="event.preventDefault(); event.currentTarget.classList.add('active')"
+                   ondragleave="event.currentTarget.classList.remove('active')"
+                   ondrop="handleColorDrop(event, '${c.english}')">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-kid border-2 border-dashed border-muted flex items-center justify-center droppable">
+                  ${colorsState.matches[c.english] ? `<div class="w-full h-full rounded-kid" style="background-color: ${c.hex}"></div>` : ''}
+                </div>
+                <span class="font-fredoka font-bold text-sm">${c.english}</span>
+              </div>
+            `).join('')}
+          </div>
+          <div class="text-center mt-6">
+            <button onclick="startColorsGame()" class="btn btn-ghost">🔄 Nuevos colores</button>
+          </div>
+        </div>
+      `;
+    }
+
+    let draggedColor = null;
+    function handleColorDragStart(e, color) {
+      draggedColor = color;
+    }
+
+    function handleColorDrop(e, targetColor) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('active');
+      if (draggedColor === targetColor) {
+        playSuccessSound();
+        colorsState.matches[targetColor] = draggedColor;
+        colorsState.gameColors = colorsState.gameColors.filter(c => c.english !== draggedColor);
+        
+        if (Object.keys(colorsState.matches).length === colorsState.targetSlots.length) {
+          playStarSound();
+          completeModule('colors', 3);
+          colorsState.gameComplete = true;
+          launchConfetti();
+        }
+        render();
+      } else {
+        playErrorSound();
+        e.currentTarget.classList.add('wrong');
+        setTimeout(() => e.currentTarget.classList.remove('wrong'), 500);
+      }
+      draggedColor = null;
+    }
+
+    // ============= ANIMALS MODULE =============
+    let animalsState = { mode: 'learn', gameAnimals: [], targetSlots: [], matches: {}, gameComplete: false,
+      spellAnimal: null, puzzle: null, letterOptions: [], selectedLetters: [], spellScore: 0, spellRound: 0, spellFeedback: null };
+    const maxSpellRounds = 5;
+
+    function renderAnimalsPage() {
+      return `
+        ${renderHeader()}
+        <main class="container pt-24 pb-8">
+          <div class="flex flex-wrap justify-center gap-3 mb-8">
+            <button onclick="animalsState.mode='learn'; render()" class="btn btn-sm ${animalsState.mode === 'learn' ? 'btn-success' : 'btn-ghost'}">📚 Aprender</button>
+            <button onclick="startAnimalsGame()" class="btn btn-sm ${animalsState.mode === 'game' ? 'btn-success' : 'btn-ghost'}">🎮 Emparejar</button>
+            <button onclick="startSpellingGame()" class="btn btn-sm ${animalsState.mode === 'spell' ? 'btn-success' : 'btn-ghost'}">✏️ Deletrear</button>
+          </div>
+          ${renderMascot("¡Aprendamos los animales en inglés! 🐾")}
+          ${animalsState.mode === 'learn' ? renderAnimalsLearn() : animalsState.mode === 'game' ? renderAnimalsGame() : renderSpellingGame()}
+        </main>
+      `;
+    }
+
+    function renderAnimalsLearn() {
+      return `
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          ${animalsData.map(a => `
+            <div class="card p-4 flex flex-col items-center gap-2 hover:scale-105 transition-transform cursor-pointer" onclick="speak('${a.english}')">
+              <span class="text-5xl animate-float">${a.emoji}</span>
+              <h3 class="font-fredoka font-bold">${a.english}</h3>
+              <p class="text-sm text-muted-foreground">${a.spanish}</p>
+              <button onclick="event.stopPropagation(); speak('${a.english}')" class="btn-success btn btn-sm rounded-full p-2 mt-1">🔊</button>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function startAnimalsGame() {
+      const shuffled = shuffle(animalsData);
+      animalsState.mode = 'game';
+      animalsState.targetSlots = shuffled.slice(0, 5);
+      animalsState.gameAnimals = shuffle([...animalsState.targetSlots]);
+      animalsState.matches = {};
+      animalsState.gameComplete = false;
+      render();
+    }
+
+    function renderAnimalsGame() {
+      if (animalsState.gameComplete) {
+        return `
+          <div class="text-center py-12">
+            <h2 class="font-fredoka text-4xl font-bold text-success mb-4">🎉 ¡Fantástico! 🎉</h2>
+            <p class="text-xl text-muted-foreground mb-6">¡Conoces muy bien los animales!</p>
+            <div class="flex justify-center gap-4">
+              <button onclick="startAnimalsGame()" class="btn btn-success">🔄 Jugar de nuevo</button>
+              <button onclick="navigateTo('home')" class="btn btn-ghost">Volver al inicio</button>
+            </div>
+          </div>
+        `;
+      }
+      
+      return `
+        <div class="max-w-3xl mx-auto">
+          <h2 class="font-fredoka text-2xl font-bold text-center mb-6">Arrastra cada animal a su nombre en inglés</h2>
+          <div class="flex flex-wrap justify-center gap-4 mb-8 p-4 bg-muted rounded-kid" id="animalsSource">
+            ${animalsState.gameAnimals.map(a => `
+              <div draggable="true" ondragstart="handleAnimalDragStart(event, '${a.english}')" 
+                   class="text-5xl cursor-grab p-3 bg-card rounded-2xl shadow-lg draggable" data-animal="${a.english}">${a.emoji}</div>
+            `).join('')}
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            ${animalsState.targetSlots.map(a => `
+              <div class="flex flex-col items-center gap-2 p-3 rounded-kid bg-card ${animalsState.matches[a.english] ? 'ring-success ring-4' : ''}"
+                   ondragover="event.preventDefault(); event.currentTarget.classList.add('active')"
+                   ondragleave="event.currentTarget.classList.remove('active')"
+                   ondrop="handleAnimalDrop(event, '${a.english}')">
+                <div class="w-16 h-16 rounded-kid border-2 border-dashed flex items-center justify-center text-4xl droppable" style="border-color: hsla(145, 80%, 45%, 0.5);">
+                  ${animalsState.matches[a.english] ? a.emoji : ''}
+                </div>
+                <span class="font-fredoka font-bold text-sm">${a.english}</span>
+                <span class="text-xs text-muted-foreground">(${a.spanish})</span>
+              </div>
+            `).join('')}
+          </div>
+          <div class="text-center mt-6">
+            <button onclick="startAnimalsGame()" class="btn btn-ghost">🔄 Nuevos animales</button>
+          </div>
+        </div>
+      `;
+    }
+
+    let draggedAnimal = null;
+    function handleAnimalDragStart(e, animal) { draggedAnimal = animal; }
+
+    function handleAnimalDrop(e, targetAnimal) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('active');
+      if (draggedAnimal === targetAnimal) {
+        playSuccessSound();
+        speak(draggedAnimal);
+        animalsState.matches[targetAnimal] = draggedAnimal;
+        animalsState.gameAnimals = animalsState.gameAnimals.filter(a => a.english !== draggedAnimal);
+        
+        if (Object.keys(animalsState.matches).length === animalsState.targetSlots.length) {
+          playStarSound();
+          completeModule('animals', 3);
+          animalsState.gameComplete = true;
+          launchConfetti();
+        }
+        render();
+      } else {
+        playErrorSound();
+        e.currentTarget.classList.add('wrong');
+        setTimeout(() => e.currentTarget.classList.remove('wrong'), 500);
+      }
+      draggedAnimal = null;
+    }
+
+    // Spelling game
+    function createWordPuzzle(word) {
+      const letters = word.split('');
+      const positions = [];
+      const numToHide = Math.min(Math.max(1, Math.floor(word.length / 3)), 3);
+      while (positions.length < numToHide) {
+        const pos = Math.floor(Math.random() * (letters.length - 1)) + 1;
+        if (!positions.includes(pos)) positions.push(pos);
+      }
+      positions.sort((a, b) => a - b);
+      const missing = positions.map(p => letters[p]);
+      const display = letters.map((l, i) => positions.includes(i) ? '_' : l).join('');
+      return { display, missing, positions };
+    }
+
+    function generateLetterOptions(correctLetters, count = 6) {
+      const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+      const options = [...correctLetters];
+      while (options.length < count) {
+        const letter = alphabet[Math.floor(Math.random() * alphabet.length)];
+        if (!options.includes(letter)) options.push(letter);
+      }
+      return shuffle(options);
+    }
+
+    function startSpellingGame() {
+      animalsState.mode = 'spell';
+      animalsState.spellScore = 0;
+      animalsState.spellRound = 0;
+      animalsState.gameComplete = false;
+      nextSpellRound();
+    }
+
+    function nextSpellRound() {
+      if (animalsState.spellRound >= maxSpellRounds) {
+        animalsState.gameComplete = true;
+        playStarSound();
+        completeModule('animals', Math.min(3, Math.ceil(animalsState.spellScore / 2)));
+        launchConfetti();
+        render();
+        return;
+      }
+      const animal = shuffle(animalsData)[0];
+      const puzzle = createWordPuzzle(animal.english.toLowerCase());
+      animalsState.spellAnimal = animal;
+      animalsState.puzzle = puzzle;
+      animalsState.letterOptions = generateLetterOptions(puzzle.missing, 6);
+      animalsState.selectedLetters = [];
+      animalsState.spellFeedback = null;
+      animalsState.spellRound++;
+      render();
+    }
+
+    function handleLetterSelect(letter) {
+      if (!animalsState.puzzle || animalsState.spellFeedback) return;
+      animalsState.selectedLetters.push(letter);
+      
+      if (animalsState.selectedLetters.length === animalsState.puzzle.missing.length) {
+        const isCorrect = animalsState.selectedLetters.every((l, i) => l === animalsState.puzzle.missing[i]);
+        if (isCorrect) {
+          playSuccessSound();
+          speak(animalsState.spellAnimal.english);
+          animalsState.spellFeedback = 'correct';
+          animalsState.spellScore++;
+          setTimeout(nextSpellRound, 1500);
+        } else {
+          playErrorSound();
+          animalsState.spellFeedback = 'wrong';
+          setTimeout(() => {
+            animalsState.selectedLetters = [];
+            animalsState.spellFeedback = null;
+            render();
+          }, 1000);
+        }
+      }
+      render();
+    }
+
+    function getCurrentDisplayWord() {
+      if (!animalsState.puzzle) return '';
+      let idx = 0;
+      return animalsState.puzzle.display.split('').map(char => {
+        if (char === '_') return animalsState.selectedLetters[idx++] || '_';
+        return char;
+      }).join('');
+    }
+
+    function renderSpellingGame() {
+      if (animalsState.gameComplete) {
+        return `
+          <div class="text-center py-12">
+            <h2 class="font-fredoka text-4xl font-bold text-success mb-4">🎉 ¡Excelente! 🎉</h2>
+            <p class="text-xl text-muted-foreground mb-2">¡Completaste ${animalsState.spellScore} de ${maxSpellRounds} palabras!</p>
+            <div class="flex justify-center gap-2 mb-6">
+              ${Array.from({length: maxSpellRounds}).map((_, i) => `<span class="text-2xl">${i < animalsState.spellScore ? '⭐' : '☆'}</span>`).join('')}
+            </div>
+            <div class="flex justify-center gap-4">
+              <button onclick="startSpellingGame()" class="btn btn-success">🔄 Jugar de nuevo</button>
+              <button onclick="navigateTo('home')" class="btn btn-ghost">Volver al inicio</button>
+            </div>
+          </div>
+        `;
+      }
+
+      if (!animalsState.spellAnimal) return '<div class="text-center py-12"><p>Cargando...</p></div>';
+
+      const feedbackClass = animalsState.spellFeedback === 'correct' ? 'ring-4 ring-success' : 
+                           animalsState.spellFeedback === 'wrong' ? 'ring-4 ring-destructive animate-shake' : '';
+
+      return `
+        <div class="max-w-2xl mx-auto">
+          <div class="flex justify-center gap-2 mb-6">
+            ${Array.from({length: maxSpellRounds}).map((_, i) => `
+              <div class="w-4 h-4 rounded-full ${i < animalsState.spellRound ? 'bg-success' : 'bg-muted'}"></div>
+            `).join('')}
+          </div>
+          <h2 class="font-fredoka text-2xl font-bold text-center mb-6">Completa el nombre del animal</h2>
+          <div class="text-center mb-8">
+            <span class="text-8xl block mb-4 animate-float">${animalsState.spellAnimal.emoji}</span>
+            <p class="text-lg text-muted-foreground">(${animalsState.spellAnimal.spanish})</p>
+            <button onclick="speak('${animalsState.spellAnimal.english}')" class="btn btn-success rounded-full p-3 mt-2">🔊</button>
+          </div>
+          <div class="flex justify-center gap-2 mb-8 p-4 rounded-kid bg-card ${feedbackClass}">
+            ${getCurrentDisplayWord().split('').map((char, i) => `
+              <span class="font-fredoka text-4xl font-bold w-12 h-14 flex items-center justify-center rounded-lg ${
+                char === '_' ? 'bg-muted border-2 border-dashed border-primary text-primary' : 'bg-primary/10 text-foreground'
+              }">${char.toUpperCase()}</span>
+            `).join('')}
+          </div>
+          <div class="flex flex-wrap justify-center gap-3 mb-6">
+            ${animalsState.letterOptions.map((letter, i) => {
+              const isUsed = animalsState.selectedLetters.includes(letter);
+              return `
+                <button onclick="handleLetterSelect('${letter}')" 
+                        ${isUsed || animalsState.spellFeedback ? 'disabled' : ''}
+                        class="letter-btn ${isUsed ? 'opacity-50 cursor-not-allowed' : ''}">${letter.toUpperCase()}</button>
+              `;
+            }).join('')}
+          </div>
+          <div class="text-center">
+            ${animalsState.spellFeedback === 'correct' ? '<div class="text-success font-fredoka text-xl mb-4">✓ ¡Correcto!</div>' : ''}
+            ${animalsState.selectedLetters.length > 0 && !animalsState.spellFeedback ? 
+              `<button onclick="animalsState.selectedLetters=[]; render()" class="btn btn-ghost btn-sm">Borrar</button>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    // ============= NUMBERS MODULE =============
+    let numbersState = { mode: 'learn', currentNumber: null, options: [], score: 0, round: 1, feedback: null, 
+      countAnimal: '', countValue: 0, gameComplete: false };
+    const totalRounds = 5;
+
+    function renderNumbersPage() {
+      return `
+        ${renderHeader()}
+        <main class="container pt-24 pb-8">
+          <div class="flex flex-wrap justify-center gap-3 mb-8">
+            <button onclick="numbersState.mode='learn'; numbersState.gameComplete=false; render()" class="btn btn-sm ${numbersState.mode === 'learn' ? 'btn-secondary' : 'btn-ghost'}">📚 Aprender</button>
+            <button onclick="startIdentifyGame()" class="btn btn-sm ${numbersState.mode === 'identify' ? 'btn-secondary' : 'btn-ghost'}">🎧 Identificar</button>
+            <button onclick="startCountingGame()" class="btn btn-sm ${numbersState.mode === 'counting' ? 'btn-secondary' : 'btn-ghost'}">🔢 Contar</button>
+          </div>
+          ${renderMascot("¡Vamos a contar en inglés! 🔢")}
+          ${numbersState.gameComplete ? renderNumbersComplete() : 
+            numbersState.mode === 'learn' ? renderNumbersLearn() : 
+            numbersState.mode === 'identify' ? renderIdentifyGame() : renderCountingGame()}
+        </main>
+      `;
+    }
+
+    function renderNumbersComplete() {
+      return `
+        <div class="text-center py-12">
+          <h2 class="font-fredoka text-4xl font-bold text-success mb-4">🎉 ¡Increíble! 🎉</h2>
+          <p class="text-xl text-muted-foreground mb-6">¡Eres un experto en números!</p>
+          <div class="flex justify-center gap-4">
+            <button onclick="numbersState.gameComplete=false; render()" class="btn btn-secondary">Jugar de nuevo</button>
+            <button onclick="navigateTo('home')" class="btn btn-ghost">Volver al inicio</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderNumbersLearn() {
+      return `
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4">
+          ${numbersData.map((n, i) => `
+            <div onclick="speak('${n.english}')" class="card p-4 flex flex-col items-center gap-2 cursor-pointer hover:scale-105 transition-transform number-colors-${i % 10} text-white">
+              <span class="text-4xl font-fredoka font-bold animate-pulse">${n.value}</span>
+              <h3 class="font-fredoka font-bold text-lg">${n.english}</h3>
+              <p class="text-sm opacity-80">${n.spanish}</p>
+              <button onclick="event.stopPropagation(); speak('${n.english}')" class="btn btn-sm rounded-full p-2 mt-1" style="background: rgba(255,255,255,0.2)">🔊</button>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function startIdentifyGame() {
+      numbersState.mode = 'identify';
+      numbersState.score = 0;
+      numbersState.round = 1;
+      numbersState.gameComplete = false;
+      generateIdentifyQuestion();
+    }
+
+    function generateIdentifyQuestion() {
+      const shuffled = shuffle(numbersData);
+      numbersState.currentNumber = shuffled[0];
+      numbersState.options = shuffle([shuffled[0], ...shuffled.slice(1, 4)]);
+      numbersState.feedback = null;
+      render();
+      setTimeout(() => speak(numbersState.currentNumber.english), 500);
+    }
+
+    function handleIdentifyAnswer(selected) {
+      if (numbersState.feedback) return;
+      const isCorrect = selected.english === numbersState.currentNumber.english;
+      numbersState.feedback = isCorrect ? 'correct' : 'wrong';
+      if (isCorrect) {
+        playSuccessSound();
+        numbersState.score++;
+      } else {
+        playErrorSound();
+      }
+      render();
+      setTimeout(() => {
+        if (numbersState.round < totalRounds) {
+          numbersState.round++;
+          generateIdentifyQuestion();
+        } else {
+          playStarSound();
+          completeModule('numbers', Math.min(3, numbersState.score));
+          numbersState.gameComplete = true;
+          launchConfetti();
+          render();
+        }
+      }, 1000);
+    }
+
+    function renderIdentifyGame() {
+      return `
+        <div class="max-w-md mx-auto text-center">
+          <div class="mb-6">
+            <p class="text-muted-foreground mb-2">Ronda ${numbersState.round} de ${totalRounds}</p>
+            <div class="flex justify-center gap-1">
+              ${Array.from({length: totalRounds}).map((_, i) => `
+                <div class="w-8 h-2 rounded-full ${i < numbersState.score ? 'bg-success' : i < numbersState.round ? 'bg-destructive/50' : 'bg-muted'}"></div>
+              `).join('')}
+            </div>
+          </div>
+          <div class="card p-8 mb-6 ${numbersState.feedback === 'correct' ? 'animate-pulse' : numbersState.feedback === 'wrong' ? 'animate-shake' : ''}">
+            <p class="text-lg text-muted-foreground mb-4">¿Qué número escuchaste? 🔊</p>
+            <button onclick="speak('${numbersState.currentNumber?.english}')" class="btn btn-secondary rounded-full p-4 mb-4">
+              <span class="text-2xl">🔊</span>
+            </button>
+            <div class="grid grid-cols-2 gap-4 mt-6">
+              ${numbersState.options.map((opt, i) => {
+                const isCorrect = numbersState.feedback && opt.english === numbersState.currentNumber.english;
+                return `
+                  <button onclick="handleIdentifyAnswer(numbersData.find(n => n.english === '${opt.english}'))" 
+                          ${numbersState.feedback ? 'disabled' : ''}
+                          class="number-colors-${i % 10} text-white font-fredoka font-bold text-2xl py-4 rounded-kid shadow-kid relative ${isCorrect ? 'ring-4 ring-success' : ''}">
+                    ${opt.value}
+                    ${isCorrect ? '<span class="absolute -top-2 -right-2 bg-success text-white p-1 rounded-full text-sm">✓</span>' : ''}
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function startCountingGame() {
+      numbersState.mode = 'counting';
+      numbersState.score = 0;
+      numbersState.round = 1;
+      numbersState.gameComplete = false;
+      generateCountingQuestion();
+    }
+
+    function generateCountingQuestion() {
+      const animal = shuffle(animalsData)[0];
+      const count = Math.floor(Math.random() * 8) + 1;
+      const wrongOptions = new Set();
+      while (wrongOptions.size < 3) {
+        const wrong = Math.floor(Math.random() * 10) + 1;
+        if (wrong !== count) wrongOptions.add(wrong);
+      }
+      numbersState.countAnimal = animal.emoji;
+      numbersState.countValue = count;
+      numbersState.options = shuffle([count, ...wrongOptions]);
+      numbersState.feedback = null;
+      render();
+    }
+
+    function handleCountingAnswer(selected) {
+      if (numbersState.feedback) return;
+      const isCorrect = selected === numbersState.countValue;
+      numbersState.feedback = isCorrect ? 'correct' : 'wrong';
+      if (isCorrect) {
+        playSuccessSound();
+        const numberWord = numbersData.find(n => n.value === selected);
+        if (numberWord) speak(numberWord.english);
+        numbersState.score++;
+      } else {
+        playErrorSound();
+      }
+      render();
+      setTimeout(() => {
+        if (numbersState.round < totalRounds) {
+          numbersState.round++;
+          generateCountingQuestion();
+        } else {
+          playStarSound();
+          completeModule('numbers', Math.min(3, numbersState.score));
+          numbersState.gameComplete = true;
+          launchConfetti();
+          render();
+        }
+      }, 1200);
+    }
+
+    function renderCountingGame() {
+      return `
+        <div class="max-w-lg mx-auto text-center">
+          <div class="mb-6">
+            <p class="text-muted-foreground mb-2">Ronda ${numbersState.round} de ${totalRounds}</p>
+            <div class="flex justify-center gap-1">
+              ${Array.from({length: totalRounds}).map((_, i) => `
+                <div class="w-8 h-2 rounded-full ${i < numbersState.score ? 'bg-success' : i < numbersState.round ? 'bg-destructive/50' : 'bg-muted'}"></div>
+              `).join('')}
+            </div>
+          </div>
+          <div class="card p-6 mb-6 ${numbersState.feedback === 'correct' ? 'animate-pulse' : numbersState.feedback === 'wrong' ? 'animate-shake' : ''}">
+            <p class="text-lg font-fredoka mb-4">¿Cuántos ${numbersState.countAnimal} ves?</p>
+            <div class="flex flex-wrap justify-center gap-3 p-4 bg-muted rounded-kid mb-6">
+              ${Array.from({length: numbersState.countValue}).map(() => `<span class="text-4xl">${numbersState.countAnimal}</span>`).join('')}
+            </div>
+            <div class="grid grid-cols-4 gap-3">
+              ${numbersState.options.map((opt, i) => {
+                const isCorrect = numbersState.feedback && opt === numbersState.countValue;
+                return `
+                  <button onclick="handleCountingAnswer(${opt})" 
+                          ${numbersState.feedback ? 'disabled' : ''}
+                          class="number-colors-${opt % 10} text-white font-fredoka font-bold text-2xl py-4 rounded-kid shadow-kid relative ${isCorrect ? 'ring-4 ring-success' : ''}">
+                    ${opt}
+                    ${isCorrect ? '<span class="absolute -top-2 -right-2 bg-success text-white p-1 rounded-full text-sm">✓</span>' : ''}
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ============= PROFILE PAGE =============
+    function renderProfilePage() {
+      const progress = getProgress();
+      const currentMascot = mascots[progress.currentMascot] || mascots.owl;
+      const allMascotsList = Object.entries(mascots);
+
+      return `
+        ${renderHeader()}
+        <main class="container pt-24 pb-8">
+          <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-8">
+              <div class="text-8xl mb-4 animate-float">${currentMascot.emoji}</div>
+              <h1 class="font-fredoka text-3xl font-bold">${currentMascot.name}</h1>
+              <p class="text-muted-foreground">Tu mascota actual</p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+              <div class="card p-4 text-center">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                  <span class="text-xl">⭐</span>
+                  <span class="font-fredoka text-2xl font-bold">${progress.stars}</span>
+                </div>
+                <p class="text-sm text-muted-foreground">Estrellas</p>
+              </div>
+              ${['colors', 'animals', 'numbers'].map(m => `
+                <div class="card p-4 text-center">
+                  <div class="text-2xl mb-2">${m === 'colors' ? '🎨' : m === 'animals' ? '🐾' : '🔢'}</div>
+                  <p class="text-sm text-muted-foreground">${m === 'colors' ? 'Colores' : m === 'animals' ? 'Animales' : 'Números'}</p>
+                  <div class="flex justify-center gap-1 mt-1">
+                    ${[0,1,2].map(i => `<span class="text-sm">${i < (progress[m+'Stars'] || 0) ? '⭐' : '☆'}</span>`).join('')}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+            
+            <div class="card p-6 mb-8">
+              <h2 class="font-fredoka text-xl font-bold text-center mb-4">🌟 Tus Mascotas 🌟</h2>
+              <div class="grid grid-cols-3 sm:grid-cols-6 gap-4">
+                ${allMascotsList.map(([id, m]) => {
+                  const isUnlocked = progress.unlockedMascots.includes(id);
+                  const isCurrent = progress.currentMascot === id;
+                  return `
+                    <button onclick="${isUnlocked ? `changeMascot('${id}')` : ''}" 
+                            class="relative p-4 rounded-kid transition-all ${
+                              isUnlocked ? (isCurrent ? 'bg-primary/20 ring-2 ring-primary' : 'bg-muted hover:bg-primary/10') : 'bg-muted/50 cursor-not-allowed opacity-50'
+                            }" ${!isUnlocked ? 'disabled' : ''}>
+                      <div class="text-4xl mb-2 ${!isUnlocked ? 'grayscale' : ''}">${m.emoji}</div>
+                      <p class="text-xs font-semibold">${m.name}</p>
+                      ${!isUnlocked ? `<div class="absolute inset-0 flex items-center justify-center bg-background/50 rounded-kid"><div class="text-center"><span class="text-xl">🔒</span><br/><span class="text-xs">⭐ ${m.unlockAt}</span></div></div>` : ''}
+                      ${isCurrent ? '<div class="absolute -top-2 -right-2 bg-primary text-white p-1 rounded-full text-xs">✓</div>' : ''}
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+              <p class="text-center text-sm text-muted-foreground mt-4">¡Gana más estrellas para desbloquear nuevas mascotas!</p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+              <button onclick="navigateTo('home')" class="btn btn-primary">← Volver a jugar</button>
+              <button onclick="if(confirm('¿Estás seguro de que quieres reiniciar tu progreso?')){localStorage.removeItem('kidVocabProgress'); render();}" class="btn btn-ghost">Reiniciar progreso</button>
+            </div>
+          </div>
+        </main>
+      `;
+    }
+
+    function changeMascot(id) {
+      const progress = getProgress();
+      if (progress.unlockedMascots.includes(id)) {
+        progress.currentMascot = id;
+        saveProgress(progress);
+        render();
+      }
+    }
+
+    // ============= CONFETTI =============
+    function launchConfetti() {
+      const colors = ['#EF4444', '#3B82F6', '#22C55E', '#EAB308', '#A855F7', '#EC4899'];
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.style.cssText = `
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            left: ${Math.random() * 100}vw;
+            top: -10px;
+            border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+            animation: fall ${2 + Math.random() * 2}s linear forwards;
+            z-index: 9999;
+          `;
+          document.body.appendChild(confetti);
+          setTimeout(() => confetti.remove(), 4000);
+        }, i * 30);
+      }
+      // Add fall animation
+      if (!document.getElementById('confetti-style')) {
+        const style = document.createElement('style');
+        style.id = 'confetti-style';
+        style.textContent = `@keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }`;
+        document.head.appendChild(style);
+      }
+    }
+
+    // ============= NAVIGATION & RENDER =============
+    function navigateTo(page) {
+      currentPage = page;
+      if (page === 'colors') { colorsState.mode = 'learn'; colorsState.isFlipping = false; }
+      if (page === 'animals') animalsState.mode = 'learn';
+      if (page === 'numbers') { numbersState.mode = 'learn'; numbersState.gameComplete = false; }
+      render();
+    }
+
+    function render() {
+      const app = document.getElementById('app');
+      switch(currentPage) {
+        case 'colors': app.innerHTML = renderColorsPage(); break;
+        case 'animals': app.innerHTML = renderAnimalsPage(); break;
+        case 'numbers': app.innerHTML = renderNumbersPage(); break;
+        case 'profile': app.innerHTML = renderProfilePage(); break;
+        default: app.innerHTML = renderHomePage();
+      }
+    }
+
+    // ============= INIT =============
+    window.onload = () => {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+      }
+      render();
+    };
+  </script>
+</body>
+</html>
