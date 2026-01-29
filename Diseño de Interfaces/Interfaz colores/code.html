@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Colors Flashcard View - Responsive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#F64649",
+                        "background-light": "#F0FDFF",
+                        "background-dark": "#1a202c",
+                        "teal-accent": "#2DD4BF",
+                        "teal-dark": "#0D9488",
+                        "purple-fun": "#D946EF",
+                        "card-bg-light": "#FFFFFF",
+                        "card-bg-dark": "#2D3748",
+                    },
+                    fontFamily: {
+                        display: ["Nunito", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        'xl': "1.5rem",
+                        '2xl': "2rem",
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'card': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                    }
+                },
+            },
+        };
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Nunito', sans-serif;
+            min-height: 100dvh;
+        }
+        .text-outline {
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark flex flex-col items-center transition-colors duration-300 overflow-x-hidden">
+<header class="w-full max-w-6xl px-4 md:px-8 py-4 flex items-center justify-between sticky top-0 z-30 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md">
+<button class="bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-300 px-4 md:px-6 py-2.5 rounded-full flex items-center gap-2 font-bold shadow-sm hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="hidden md:inline">Inicio</span>
+</button>
+<div class="flex items-center gap-2">
+<h1 class="text-2xl md:text-3xl font-black text-purple-fun dark:text-purple-400 tracking-tight">English Fun!</h1>
+<span class="material-symbols-outlined text-purple-fun dark:text-purple-400 text-2xl fill-1">star</span>
+</div>
+<div class="flex items-center gap-3 md:gap-6">
+<div class="bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-sm flex items-center gap-2 border border-gray-100 dark:border-gray-700">
+<span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
+<span class="font-black text-gray-700 dark:text-gray-200">6</span>
+</div>
+<div class="w-10 h-10 md:w-12 md:h-12 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center overflow-hidden border-2 border-white dark:border-gray-700 shadow-sm transition-transform hover:scale-105">
+<img alt="Owl User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGufZCgyaPC1jthwhPhFfciZU_8Q4WjVI-Prf9U9O8HT5PNmVWDIsad93naOT_qAyHcQD5sZzDTETEVSf52Fgr-vUrPjTgwshu07xmpmR04XCM0ysD7FapQt4qddvlVEm_k2aASFkhP1CjcZqlS34Kk2UqYdyFnvEsvKxI7o2h5MS6OXAl5tOS2HAyduieoy8AlkHDu7Zmrf62ldZW0vMfQIWqXZUR3f0S9qNeeHhyj2976aPVnMjzvWx2tj_tIcmYtayM2ec3cNGN"/>
+</div>
+</div>
+</header>
+<main class="w-full max-w-6xl px-4 py-4 md:py-8 flex flex-col items-center flex-grow">
+<div class="flex items-center gap-4 w-full max-w-md justify-center mb-8">
+<button class="flex-1 bg-teal-accent text-white px-6 py-3 rounded-full font-bold shadow-md flex items-center justify-center gap-2 transform active:scale-95 transition-transform">
+<span class="material-symbols-outlined">style</span>
+                Flashcards
+            </button>
+<button class="flex-1 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 px-6 py-3 rounded-full font-bold shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-purple-600 dark:text-purple-400">sports_esports</span>
+                Juego
+            </button>
+</div>
+<div class="flex flex-col items-center relative mb-10 transition-all">
+<div class="w-20 h-20 md:w-28 md:h-28 relative z-10 mb-[-12px] md:mb-[-15px]">
+<div class="text-6xl md:text-8xl filter drop-shadow-lg text-center">🦉</div>
+</div>
+<div class="bg-white dark:bg-gray-800 px-8 py-5 rounded-3xl shadow-soft relative border border-gray-100 dark:border-gray-700 text-center max-w-xs md:max-w-md">
+<div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-5 h-5 bg-white dark:bg-gray-800 rotate-45 border-t border-l border-gray-100 dark:border-gray-700"></div>
+<p class="text-gray-700 dark:text-gray-300 font-bold text-base md:text-lg leading-tight">
+                    ¡Los colores son muy divertidos! 🎉
+                </p>
+<p class="text-gray-400 dark:text-gray-500 text-xs mt-1 font-medium italic">- Ollie</p>
+</div>
+</div>
+<div class="w-full flex items-center justify-center gap-4 md:gap-12 lg:gap-20">
+<button class="hidden md:flex bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 w-16 h-16 rounded-full shadow-lg border border-gray-100 dark:border-gray-700 flex-shrink-0 items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-90 transition-all group">
+<span class="material-symbols-outlined text-3xl group-hover:-translate-x-1 transition-transform">arrow_back_ios_new</span>
+</button>
+<div class="w-full max-w-sm md:max-w-md aspect-[4/5] bg-white dark:bg-card-bg-dark rounded-[2.5rem] shadow-card overflow-hidden flex flex-col transition-all duration-300 hover:shadow-2xl">
+<div class="h-[60%] bg-primary flex flex-col items-center justify-center relative w-full">
+<div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent"></div>
+<h2 class="text-7xl md:text-8xl font-black text-white tracking-wide text-outline drop-shadow-md">
+                        Red
+                    </h2>
+</div>
+<div class="h-[40%] flex flex-col items-center justify-center bg-white dark:bg-gray-800 relative p-6">
+<h3 class="text-3xl font-bold text-gray-700 dark:text-gray-300 mb-6">
+                        Rojo
+                    </h3>
+<button class="w-20 h-20 bg-teal-accent hover:bg-teal-400 active:bg-teal-500 rounded-full flex items-center justify-center shadow-lg shadow-teal-500/30 text-white transition-all transform hover:scale-110 active:scale-95 group">
+<span class="material-symbols-outlined text-4xl group-hover:animate-pulse">volume_up</span>
+</button>
+<div class="mt-4 px-4 py-1 bg-gray-50 dark:bg-gray-900 rounded-full">
+<span class="text-gray-400 dark:text-gray-500 text-sm font-black">
+                            1 / 12
+                        </span>
+</div>
+</div>
+</div>
+<button class="hidden md:flex bg-teal-accent hover:bg-teal-400 text-white w-16 h-16 rounded-full shadow-lg shadow-teal-500/20 flex-shrink-0 items-center justify-center active:scale-90 transition-all group">
+<span class="material-symbols-outlined text-3xl group-hover:translate-x-1 transition-transform">arrow_forward_ios</span>
+</button>
+</div>
+<div class="flex md:hidden items-center justify-between w-full max-w-sm gap-4 mt-8">
+<button class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 px-6 py-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center w-1/2 hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 transition-colors group">
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 mb-1 group-hover:-translate-x-1 transition-transform">arrow_back</span>
+<span class="font-bold text-sm">Anterior</span>
+</button>
+<button class="bg-teal-accent hover:bg-teal-400 text-white px-6 py-4 rounded-2xl shadow-lg shadow-teal-500/20 flex flex-col items-center justify-center w-1/2 active:scale-95 transition-all group">
+<span class="font-bold text-sm mb-1">Siguiente</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</main>
+<footer class="h-10 w-full"></footer>
+
+</body></html>

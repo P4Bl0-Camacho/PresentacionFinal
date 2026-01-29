@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>English Fun! - Animal Vocabulary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2ED385",
+                        secondary: "#00D8C8",
+                        "background-light": "#F0FBFA",
+                        "background-dark": "#0F172A",
+                    },
+                    fontFamily: {
+                        display: ["Nunito", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen">
+<header class="p-4 flex items-center justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-50">
+<button class="bg-[#E2F9F7] dark:bg-teal-900/30 text-secondary px-4 py-2 rounded-full flex items-center gap-2 font-bold text-sm">
+<span class="material-icons-round text-lg">home</span>
+        Inicio
+    </button>
+<h1 class="text-[#A855F7] dark:text-purple-400 font-extrabold text-xl flex items-center gap-1">
+        English Fun! <span class="text-xl">✨</span>
+</h1>
+<div class="flex items-center gap-3">
+<div class="bg-white dark:bg-slate-800 px-3 py-1.5 rounded-full card-shadow flex items-center gap-1.5 border border-slate-100 dark:border-slate-700">
+<span class="material-icons-round text-yellow-400 text-xl">star</span>
+<span class="font-bold text-slate-700 dark:text-slate-200">6</span>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-white dark:border-slate-700 overflow-hidden bg-orange-100">
+<img alt="Owl Profile Icon" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK_r9D1YSivBk43if-v2RVbSVATDyOqboE7QRQcI7n13QKqX687LRmWvI1l0mmKpQtuqadJRUYWi2OS_MDef7fTDRYo-m-k2WTFIbYLT5PEy9f-_38moEu2sr-H0w55UX4dreBSc9fGPvuupUABup5qiNJxwzt25rh-STR67n4vdSGGBt46CUArvMoKRGPbbH2nUO2G5Weq2guHdxslhIhOmd1wE5Ro8EPZlYlVgIBsicxkrVXR2aahSZSHozyvwHprEZvTDiSL32f"/>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 pb-12">
+<div class="flex justify-center my-6">
+<div class="bg-white dark:bg-slate-800 p-1.5 rounded-full flex gap-1 card-shadow w-full max-w-xs">
+<button class="flex-1 bg-primary text-white py-2.5 px-4 rounded-full flex items-center justify-center gap-2 font-bold shadow-lg shadow-primary/20 transition-transform active:scale-95">
+<span class="material-icons-round text-lg">menu_book</span>
+                Aprender
+            </button>
+<button class="flex-1 text-slate-400 dark:text-slate-500 py-2.5 px-4 rounded-full flex items-center justify-center gap-2 font-bold transition-colors hover:text-slate-600">
+<span class="material-icons-round text-lg">videogame_asset</span>
+                Juego
+            </button>
+</div>
+</div>
+<div class="flex flex-col items-center mb-8">
+<div class="w-20 h-20 mb-2 flex items-center justify-center text-6xl drop-shadow-md">
+            🦉
+        </div>
+<div class="bg-white dark:bg-slate-800 px-8 py-4 rounded-[2rem] card-shadow relative text-center border border-white dark:border-slate-700">
+<div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-slate-800 rotate-45"></div>
+<p class="text-slate-700 dark:text-slate-200 font-bold flex items-center justify-center gap-2">
+                ¡Escucha cómo se pronuncian!
+                <span class="material-icons-round text-slate-400 text-lg">volume_up</span>
+</p>
+<p class="text-slate-400 text-xs mt-1">- Ollie</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+<div class="bg-white dark:bg-slate-800 p-6 rounded-[2rem] card-shadow border border-white dark:border-slate-700 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+<span class="text-5xl mb-4">🐕</span>
+<h3 class="text-[#1E40AF] dark:text-blue-400 font-extrabold text-lg">Dog</h3>
+<p class="text-slate-400 dark:text-slate-500 font-semibold mb-6">Perro</p>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-all">
+<span class="material-icons-round text-xl">volume_up</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-[2rem] card-shadow border border-white dark:border-slate-700 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+<span class="text-5xl mb-4">🐈</span>
+<h3 class="text-[#1E40AF] dark:text-blue-400 font-extrabold text-lg">Cat</h3>
+<p class="text-slate-400 dark:text-slate-500 font-semibold mb-6">Gato</p>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-all">
+<span class="material-icons-round text-xl">volume_up</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-[2rem] card-shadow border border-white dark:border-slate-700 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+<span class="text-5xl mb-4">🐦</span>
+<h3 class="text-[#1E40AF] dark:text-blue-400 font-extrabold text-lg">Bird</h3>
+<p class="text-slate-400 dark:text-slate-500 font-semibold mb-6">Pájaro</p>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-all">
+<span class="material-icons-round text-xl">volume_up</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-[2rem] card-shadow border border-white dark:border-slate-700 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+<span class="text-5xl mb-4">🐟</span>
+<h3 class="text-[#1E40AF] dark:text-blue-400 font-extrabold text-lg">Fish</h3>
+<p class="text-slate-400 dark:text-slate-500 font-semibold mb-6">Pez</p>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-all">
+<span class="material-icons-round text-xl">volume_up</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-[2rem] card-shadow border border-white dark:border-slate-700 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+<span class="text-5xl mb-4">🐎</span>
+<h3 class="text-[#1E40AF] dark:text-blue-400 font-extrabold text-lg">Horse</h3>
+<p class="text-slate-400 dark:text-slate-500 font-semibold mb-6">Caballo</p>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-all">
+<span class="material-icons-round text-xl">volume_up</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-[2rem] card-shadow border border-white dark:border-slate-700 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+<span class="text-5xl mb-4">🐄</span>
+<h3 class="text-[#1E40AF] dark:text-blue-400 font-extrabold text-lg">Cow</h3>
+<p class="text-slate-400 dark:text-slate-500 font-semibold mb-6">Vaca</p>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-all">
+<span class="material-icons-round text-xl">volume_up</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-[2rem] card-shadow border border-white dark:border-slate-700 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+<span class="text-5xl mb-4">🐷</span>
+<h3 class="text-[#1E40AF] dark:text-blue-400 font-extrabold text-lg">Pig</h3>
+<p class="text-slate-400 dark:text-slate-500 font-semibold mb-6">Cerdo</p>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-all">
+<span class="material-icons-round text-xl">volume_up</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-[2rem] card-shadow border border-white dark:border-slate-700 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+<span class="text-5xl mb-4">🐑</span>
+<h3 class="text-[#1E40AF] dark:text-blue-400 font-extrabold text-lg">Sheep</h3>
+<p class="text-slate-400 dark:text-slate-500 font-semibold mb-6">Oveja</p>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-all">
+<span class="material-icons-round text-xl">volume_up</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-[2rem] card-shadow border border-white dark:border-slate-700 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+<span class="text-5xl mb-4">🐔</span>
+<h3 class="text-[#1E40AF] dark:text-blue-400 font-extrabold text-lg">Chicken</h3>
+<p class="text-slate-400 dark:text-slate-500 font-semibold mb-6">Pollo</p>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-all">
+<span class="material-icons-round text-xl">volume_up</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-[2rem] card-shadow border border-white dark:border-slate-700 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+<span class="text-5xl mb-4">🦆</span>
+<h3 class="text-[#1E40AF] dark:text-blue-400 font-extrabold text-lg">Duck</h3>
+<p class="text-slate-400 dark:text-slate-500 font-semibold mb-6">Pato</p>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-all">
+<span class="material-icons-round text-xl">volume_up</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-[2rem] card-shadow border border-white dark:border-slate-700 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+<span class="text-5xl mb-4">🐰</span>
+<h3 class="text-[#1E40AF] dark:text-blue-400 font-extrabold text-lg">Rabbit</h3>
+<p class="text-slate-400 dark:text-slate-500 font-semibold mb-6">Conejo</p>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-all">
+<span class="material-icons-round text-xl">volume_up</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-[2rem] card-shadow border border-white dark:border-slate-700 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+<span class="text-5xl mb-4">🐭</span>
+<h3 class="text-[#1E40AF] dark:text-blue-400 font-extrabold text-lg">Mouse</h3>
+<p class="text-slate-400 dark:text-slate-500 font-semibold mb-6">Ratón</p>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 active:scale-90 transition-all">
+<span class="material-icons-round text-xl">volume_up</span>
+</button>
+</div>
+</div>
+</main>
+<div class="fixed bottom-0 left-0 right-0 h-6 bg-transparent pointer-events-none"></div>
+
+</body></html>

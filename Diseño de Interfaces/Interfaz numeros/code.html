@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>English Fun! - Learning Numbers</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FF9F43",
+                        "background-light": "#E0F7FA",
+                        "background-dark": "#0A191E",
+                        "card-red": "#F55C5C",
+                        "card-blue": "#4D96FF",
+                        "card-green": "#27C671",
+                        "card-yellow": "#FBC000",
+                        "card-purple": "#B670FF",
+                        "card-pink": "#F06292",
+                        "card-orange": "#FF8F2D",
+                        "card-teal": "#12CBC4",
+                    },
+                    fontFamily: {
+                        display: ["Fredoka", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .font-display { font-family: 'Fredoka', sans-serif; }
+        .material-symbols-rounded {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
+        .dark .speech-bubble::after {
+            border-color: transparent transparent #1F2937 transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen transition-colors duration-300">
+<header class="p-4 flex items-center justify-between max-w-6xl mx-auto">
+<button class="flex items-center gap-2 bg-[#E0FCF9] dark:bg-teal-900/30 text-teal-500 font-bold px-4 py-2 rounded-full shadow-sm hover:scale-105 transition-transform">
+<span class="material-symbols-rounded">home</span>
+<span class="hidden sm:inline">Inicio</span>
+</button>
+<div class="flex items-center gap-1">
+<h1 class="text-2xl sm:text-3xl font-bold text-[#A55EEA] dark:text-purple-400">English Fun!</h1>
+<span class="material-symbols-rounded text-purple-400">auto_awesome</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-sm">
+<span class="material-symbols-rounded text-yellow-400">star</span>
+<span class="font-bold text-gray-700 dark:text-gray-200">6</span>
+</div>
+<div class="w-10 h-10 bg-orange-100 rounded-full border-2 border-white dark:border-gray-700 overflow-hidden shadow-sm flex items-center justify-center">
+<span class="text-2xl">🦉</span>
+</div>
+</div>
+</header>
+<nav class="flex justify-center gap-3 px-4 py-4 max-w-6xl mx-auto">
+<button class="flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-full shadow-lg font-bold">
+<span class="text-xl">📚</span>
+<span>Aprender</span>
+</button>
+<button class="flex items-center gap-2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-6 py-2.5 rounded-full shadow-md font-bold hover:bg-gray-50 transition-colors">
+<span class="text-xl">🎧</span>
+<span>Identificar</span>
+</button>
+<button class="flex items-center gap-2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-6 py-2.5 rounded-full shadow-md font-bold hover:bg-gray-50 transition-colors">
+<span class="text-xl">🔢</span>
+<span>Contar</span>
+</button>
+</nav>
+<div class="flex flex-col items-center mt-6 mb-8">
+<div class="w-16 h-16 text-4xl mb-2 flex items-center justify-center">🦉</div>
+<div class="speech-bubble relative bg-white dark:bg-gray-800 px-8 py-4 rounded-3xl shadow-lg text-center max-w-xs mx-4">
+<p class="text-gray-800 dark:text-gray-100 font-semibold mb-1">
+                ¡Vamos a contar en inglés! 🔢
+            </p>
+<p class="text-gray-400 dark:text-gray-400 text-sm">- Ollie</p>
+</div>
+</div>
+<main class="max-w-6xl mx-auto px-4 pb-12">
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+<div class="bg-card-red rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">1</h2>
+<p class="text-2xl font-bold text-white">One</p>
+<p class="text-white/70 mb-6">Uno</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-blue rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">2</h2>
+<p class="text-2xl font-bold text-white">Two</p>
+<p class="text-white/70 mb-6">Dos</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-green rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">3</h2>
+<p class="text-2xl font-bold text-white">Three</p>
+<p class="text-white/70 mb-6">Tres</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-yellow rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">4</h2>
+<p class="text-2xl font-bold text-white">Four</p>
+<p class="text-white/70 mb-6">Cuatro</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-purple rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">5</h2>
+<p class="text-2xl font-bold text-white">Five</p>
+<p class="text-white/70 mb-6">Cinco</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-pink rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">6</h2>
+<p class="text-2xl font-bold text-white">Six</p>
+<p class="text-white/70 mb-6">Seis</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-orange rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">7</h2>
+<p class="text-2xl font-bold text-white">Seven</p>
+<p class="text-white/70 mb-6">Siete</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-teal rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">8</h2>
+<p class="text-2xl font-bold text-white">Eight</p>
+<p class="text-white/70 mb-6">Ocho</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-blue rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">9</h2>
+<p class="text-2xl font-bold text-white">Nine</p>
+<p class="text-white/70 mb-6">Nueve</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-teal rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">10</h2>
+<p class="text-2xl font-bold text-white">Ten</p>
+<p class="text-white/70 mb-6">Diez</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-red rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">11</h2>
+<p class="text-2xl font-bold text-white">Eleven</p>
+<p class="text-white/70 mb-6">Once</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-blue rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">12</h2>
+<p class="text-2xl font-bold text-white">Twelve</p>
+<p class="text-white/70 mb-6">Doce</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-green rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">13</h2>
+<p class="text-2xl font-bold text-white">Thirteen</p>
+<p class="text-white/70 mb-6">Trece</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-yellow rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">14</h2>
+<p class="text-2xl font-bold text-white">Fourteen</p>
+<p class="text-white/70 mb-6">Catorce</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+<div class="bg-card-purple rounded-[2rem] p-6 flex flex-col items-center text-center shadow-lg transform transition hover:scale-105">
+<h2 class="text-5xl font-bold text-white mb-2">15</h2>
+<p class="text-2xl font-bold text-white">Fifteen</p>
+<p class="text-white/70 mb-6">Quince</p>
+<button class="bg-white/30 p-3 rounded-full hover:bg-white/40 transition-colors">
+<span class="material-symbols-rounded text-white">volume_up</span>
+</button>
+</div>
+</div>
+</main>
+<button class="fixed bottom-6 right-6 w-12 h-12 bg-white dark:bg-gray-800 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-50" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-rounded text-gray-700 dark:text-yellow-400">dark_mode</span>
+</button>
+
+</body></html>
