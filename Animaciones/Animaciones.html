@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colección de Animaciones</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #00b894;
+            --accent: #fdcb6e;
+            --text: #2d3436;
+            --bg: #f5f6fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin: 0;
+        }
+
+        /* Contenedor general de cada tarjeta */
+        .demo-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h3 { color: var(--text); margin-bottom: 20px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;}
+
+        /* --- 1. ANIMACIÓN DE CELEBRACIÓN --- */
+        .confetti-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px; height: 10px;
+            background: var(--primary);
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to { transform: translateY(350px) rotate(720deg); }
+        }
+        .success-msg {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            font-weight: bold;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        button.btn-celebrate {
+            background: var(--primary); color: white; border: none; padding: 10px 20px;
+            border-radius: 20px; cursor: pointer; transition: transform 0.2s;
+        }
+        button.btn-celebrate:active { transform: scale(0.95); }
+
+        /* --- 2. ANIMACIÓN DE FLASHCARDS (FLIP) --- */
+        .flashcard {
+            width: 200px; height: 260px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flashcard-inner {
+            width: 100%; height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        .flashcard:hover .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%; height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center; justify-content: center;
+            flex-direction: column;
+        }
+        .flashcard-front { background: #fff; }
+        .flashcard-back {
+            background: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .animal-img {
+            width: 80%; height: 60%;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* --- 3. MASCOTA VIRTUAL (BÚHO CSS) --- */
+        .owl-container {
+            width: 120px; height: 140px;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+        .owl-body {
+            width: 100px; height: 110px;
+            background: #a29bfe;
+            border-radius: 50% 50% 40% 40%;
+            position: absolute;
+            left: 10px; top: 10px;
+            box-shadow: inset -10px -10px 0 rgba(0,0,0,0.1);
+        }
+        .owl-eye {
+            width: 35px; height: 35px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 25px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .eye-left { left: 15px; }
+        .eye-right { right: 15px; }
+        .pupil {
+            width: 15px; height: 15px;
+            background: #2d3436;
+            border-radius: 50%;
+            animation: blink 4s infinite;
+        }
+        .beak {
+            width: 0; height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 15px solid var(--accent);
+            position: absolute;
+            top: 55px; left: 40px;
+        }
+        .wing {
+            width: 30px; height: 50px;
+            background: #8e7dbe;
+            position: absolute;
+            top: 40px;
+            border-radius: 50%;
+        }
+        .wing.left { left: -10px; transform: rotate(20deg); animation: flap 1s ease-in-out infinite alternate;}
+        .wing.right { right: -10px; transform: rotate(-20deg); animation: flap 1s ease-in-out infinite alternate-reverse;}
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes blink {
+            0%, 96%, 100% { height: 15px; }
+            98% { height: 2px; }
+        }
+        @keyframes flap {
+            from { transform: rotate(15deg); }
+            to { transform: rotate(25deg); }
+        }
+
+        /* --- 4. PROGRESO Y LOGROS --- */
+        .progress-container { width: 100%; max-width: 250px; margin-bottom: 20px;}
+        .progress-bar-bg {
+            background: #dfe6e9; height: 20px;
+            border-radius: 10px; overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, var(--secondary), #55efc4);
+            transition: width 0.5s ease;
+        }
+        .trophy-area {
+            font-size: 3rem;
+            opacity: 0.2;
+            transform: scale(0.8);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            filter: grayscale(100%);
+        }
+        .trophy-area.unlocked {
+            opacity: 1;
+            transform: scale(1.2);
+            filter: grayscale(0%);
+            text-shadow: 0 0 20px var(--accent);
+        }
+        .status-text { margin-top: 10px; font-size: 0.9rem; color: #636e72;}
+
+    </style>
+</head>
+<body>
+
+    <div class="demo-card">
+        <h3>1. Celebración</h3>
+        <div class="confetti-container" id="confetti-box"></div>
+        <div class="success-msg" id="msg">¡Excelente Trabajo!</div>
+        <button class="btn-celebrate" onclick="celebrate()">Terminar Tarea</button>
+    </div>
+
+    <div class="demo-card">
+        <h3>2. Flashcards </h3>
+        <div class="flashcard">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <div style="font-size: 80px; margin-bottom: 10px;">🐕</div>
+                    <span>¿Qué animal es?</span>
+                </div>
+                <div class="flashcard-back">
+                    DOG
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-card">
+        <h3>3. Mascota (Búho Sabio)</h3>
+        <div class="owl-container" style="width: auto; height: auto; display: flex; justify-content: center; align-items: center;">
+            <span style="font-size: 120px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));">🦉</span>
+        </div>
+    </div>
+
+    <div class="demo-card">
+        <h3>4. Progreso y Logro</h3>
+        <div class="progress-container">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="prog-fill"></div>
+            </div>
+        </div>
+        <div class="trophy-area" id="trophy">🏆</div>
+        <div class="status-text" id="status-txt">Nivel 1: Iniciando...</div>
+        <button class="btn-celebrate" onclick="startProgress()" style="margin-top:15px; font-size:0.8rem">Simular Progreso</button>
+    </div>
+
+    <script>
+        // 1. Lógica de Celebración
+        function celebrate() {
+            const container = document.getElementById('confetti-box');
+            const msg = document.getElementById('msg');
+            const colors = ['#e17055', '#fdcb6e', '#00b894', '#0984e3', '#6c5ce7'];
+            
+            // Mostrar mensaje
+            msg.style.display = 'block';
+
+            // Crear 50 piezas de confetti
+            for(let i=0; i<50; i++) {
+                const conf = document.createElement('div');
+                conf.classList.add('confetti');
+                
+                // Posición y color aleatorio
+                conf.style.left = Math.random() * 100 + '%';
+                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Variación en velocidad y retardo
+                conf.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                conf.style.animationDelay = (Math.random() * 1) + 's';
+                
+                container.appendChild(conf);
+
+                // Limpiar DOM después de la animación
+                setTimeout(() => conf.remove(), 4000);
+            }
+        }
+
+        // 4. Lógica de Progreso
+        function startProgress() {
+            const fill = document.getElementById('prog-fill');
+            const trophy = document.getElementById('trophy');
+            const txt = document.getElementById('status-txt');
+            let width = 0;
+
+            // Reset
+            fill.style.width = '0%';
+            trophy.classList.remove('unlocked');
+            txt.innerText = "Cargando experiencia...";
+
+            const interval = setInterval(() => {
+                if(width >= 100) {
+                    clearInterval(interval);
+                    trophy.classList.add('unlocked');
+                    txt.innerText = "¡Logro Desbloqueado!";
+                    celebrate(); // Reusamos la animación de confeti si queremos
+                } else {
+                    width++;
+                    fill.style.width = width + '%';
+                }
+            }, 30); // Velocidad de llenado
+        }
+    </script>
+</body>
+</html>
